@@ -25,7 +25,7 @@ data = pd.read_csv('../LoanStats3a.csv')
 #plt.show()
 
 #explore relationship for renters, owners, and mortgage holders
-df2 = data[['loan_amnt', 'home_ownership']]
+df2 = data[['total_acc', 'home_ownership', 'grade','loan_amnt']]
 df2 = df2.dropna()
 #y = df2['loan_amnt']
 #x = df2['total_acc']
@@ -43,7 +43,10 @@ df2 = df2.dropna()
 plt.show()
 
 #grouping attempt
-bygroup_loans = df2.groupby(['home_ownership'])
-bygroup_loans.agg([np.sum, np.mean, np.std, len])
+bygroup_loans1 = df2.groupby(['home_ownership', 'grade'])
+bygroup_loans2 = df2.groupby(['grade','home_ownership'])
+bygroup_loans3 = df2.groupby(['total_acc'])
+
+bygroup_loans3.agg([np.sum, np.mean, np.std, len])
 
 
